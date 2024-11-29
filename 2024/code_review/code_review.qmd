@@ -30,11 +30,22 @@ if (!icons::icon_installed(icons::health_icons)) {
 ## Nice to meet you `r emoji("wave")`
 
  <br></br>
-`r health_icons("chart-infected-stable")`&nbsp; data scientist, infectious disease modelling team
+ `r fontawesome("address-card")` &nbsp; statistics PhD, education, & consultancy
  <br></br>
-`r fontawesome("github")` &nbsp;bit of git nerd
+`r health_icons("chart-infected-stable")` &nbsp; data scientist & infectious disease modeller
  <br></br>
-`r fontawesome("r-project")` &nbsp;I mostly work in R, concepts are language-agnostic
+`r fontawesome("github")` &nbsp; bit of git nerd
+ <br></br>
+`r fontawesome("r-project")` &nbsp; I mostly work in R, concepts are language-agnostic
+
+:::{.notes}
+my background is originally academic, I have a PhD in offshore wind / UQ from Newcastle. I've done plenty of teaching, training and consultancy too!
+
+I joined UKHSA as a snr data scientist. I work on problems in real-time modelling of infectious disease dynamics for short-term decision making influenced by winter hospital pressures (share pack?). Other people in my team do a lot of work that relates to how vectors may spread pathogens, e.g. mosquitos and ticks
+
+I'm a bit of a git nerd, and I mainly work in R. The concepts here are very language agnostic, but as a health warning, I might make some R references
+
+:::
 
 ## Who is this talk for?
  <br></br>
@@ -127,7 +138,7 @@ df |>
 ```
 
 ::: {.notes}
-spending a long time on code review means we can throroughly review all parts of our code, but we suffer from diminishing returns
+spending a long time on code review means we can thoroughly review all parts of our code, but we suffer from diminishing returns
 
 this is bound to be annoying for _everyone_
 
@@ -172,7 +183,7 @@ thought about how to do code review better?
  <br></br>
  `r emoji("wrench")` make direct suggestions
   <br></br>
- `r emoji("eyes")` [let's review some code](LINK TO)
+ `r emoji("eyes")` [let's review some code](https://github.com/jcken95/code-examples/pulls)
 
 :::{.notes}
 
@@ -333,6 +344,48 @@ I'm not going to say that every piece of advice I've given here _should_ be adop
 
 :::
 
+# Some thoughts on best practices
+
+## best practices are always changing
+<br></br>
+`r emoji("thinking")` come up with a sensible approach
+<br></br>
+`r emoji("pen")` document it, shout about it, adapt it
+<br></br>
+`r emoji("bullseye")` apply the rules consistently
+<br></br>
+`r emoji("shrug")` anything else is just an opinion
+
+
+:::{.notes}
+One complaint with best practices is that they're constantly changing! This is true _and_ annoying!
+
+I think that the real core of "best" practice is to have a sensible, well defined approach, have it well documented and something that is applied consistently
+
+This means you _can_ apply different rules in different situations / projects, provided it's clear
+
+I also think there's different levels for "best" practices. Regular, operational code should be well documented, tested, easy to use
+
+A one off analysis probably doesn't need full blown CI/CD - we can and should be pragmatic
+:::
+
+## why adopt best practices?
+
+<br></br>
+`r emoji("boat")` we run a tight ship
+<br></br>
+`r emoji("tired")` decision fatigue
+<br></br>
+`r emoji("gem")` clarity leads to productivity
+<br></br>
+`r emoji("shrug")` maybe they should be called <b> standard practices </b>
+
+:::{.notes}
+Our operational cadence is _fast_. We produce over 100 forecasts a week, with about 8-10 working hours to do data pulls, fit & validate models, QS results and produce a slide deck. Our users range from ministers to staff in local authorities and NHS trusts. We simply don't have the time to make unneccesary decisions 
+
+I think though that "best" practices is kind of a misnomer, "standard" might be a better word: there are good reasons to deviate from whatever "best" practices is, for example Google's R style guide breaks away from the tidyverse for clarity in places
+:::
+
 ## In review
 
 <br></br>
@@ -348,6 +401,8 @@ I'm not going to say that every piece of advice I've given here _should_ be adop
 ## Further resources
 
 * [Blog version](https://jcken95.github.io/projects/code_review.html)
+
+* [safespace](https://github.com/jonocarroll/safespace)
 
 * [Google's engineering practices](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
 
