@@ -1,0 +1,360 @@
+---
+title: "Code review for statisticians, data scientists, & modellers"
+format: revealjs
+author: Dr Jack Kennedy (he/him)
+institute: Infectious disease modelling team | UKHSA
+embed-resources: true
+---
+
+```{r}
+#| label: setup
+
+library(icons)
+library(showtext)
+library(elementalist) #' pak::pak("teunbrand/elementalist")
+library(PrettyCols)
+library(emoji)
+library(dplyr)
+library(ggplot2)
+
+#  TODO install icons
+if (!icons::icon_installed(icons::fontawesome)) {
+  icons::download_fontawesome()
+}
+
+if (!icons::icon_installed(icons::health_icons)) {
+  icons::download_health_icons()
+}
+```
+
+## Nice to meet you `r emoji("wave")`
+
+ <br></br>
+`r health_icons("chart-infected-stable")`&nbsp; data scientist, infectious disease modelling team
+ <br></br>
+`r fontawesome("github")` &nbsp;bit of git nerd
+ <br></br>
+`r fontawesome("r-project")` &nbsp;I mostly work in R, concepts are language-agnostic
+
+## Who is this talk for?
+ <br></br>
+`r emoji("graduation_cap")` a big chunk of my team have an academic background
+ <br></br>
+`r emoji("woman_technologist")` we spend a lot of time developing software ...
+ <br></br>
+`r emoji("bar_chart")` ... but we're in analytical roles <br></br>
+
+:::{.fragment}
+`r emoji("shush")` honestly? This talk is _for me_ ...
+:::
+
+:::{.notes}
+a lot of my team have academic training in maths, stats (usually a health slant), epidemiology, or something of a similar feel. We have very little formal training in software development practices, but I think we've actually got some really good processes in place
+
+there's definitely a lot those of us in analytical roles can learn from the software development community ... that's not to say every software developer is good at code review, but there's a lot of good stuff out there
+
+(next fragment)
+
+but honestly, this talk is really for me. A previous version of myself could have exercised much more nuiance when reviewing code. This is something I'm trying to get better at, and there are probably ways in which we can all be better reviewers!
+
+:::
+
+## It's a balancing act
+
+```{r}
+#| label: code-review
+
+
+showtext_auto()
+font_add_google("Gloria Hallelujah")
+main_font <- "Gloria Hallelujah"
+
+
+scale01 <- function(x, jitter = FALSE, sd = 0.2) {
+
+  upper <- max(x)
+  lower <- min(x)
+
+  if (jitter) {
+    upper <- upper + rnorm(1, sd = sd)
+    lower <- lower + rnorm(1, sd = sd)
+  }
+
+  (x - upper) / (upper - lower)
+
+}
+
+set.seed(987654321)
+
+time <- seq(0, 3, length.out = 100)
+
+
+df <- data.frame(
+  time = time,
+  time_lagged = 1.1 * time - 0.1,
+  reward = scale01(log(5 * time^0.8 + 1), jitter = TRUE, sd = 0.5),
+  frustration = scale01(exp(2 * time + 1), jitter = TRUE)
+)
+
+df |>
+  ggplot() +
+  geom_line_theme(aes(time, frustration, colour = "frustration"), linewidth = 1) +
+  geom_line_theme(aes(time_lagged, reward, colour = "code quality"), linewidth = 1) +
+  coord_cartesian(clip = "off") +
+  PrettyCols::scale_colour_pretty_d("Fun") +
+  labs(
+    x = "time spent on code review",
+    y = "effect",
+    colour = ""
+  ) +
+  theme_void() +
+  theme_minimal() +
+  theme(
+    text = element_text(family = main_font),
+    axis.title = element_text(size = 40),
+    axis.text = element_blank(),
+
+    elementalist.geom_line = element_line_wiggle(amount = 20, n = 30),
+    legend.key = element_rect_wiggle(3, colour = NA),
+    panel.background = element_rect_wiggle(sides = c("lb"),
+      colour = "black"),
+    panel.grid = element_blank(),
+
+
+    legend.text = element_text(size = 32),
+    legend.position = "top"
+  )
+```
+
+::: {.notes}
+spending a long time on code review means we can throroughly review all parts of our code, but we suffer from diminishing returns
+
+this is bound to be annoying for _everyone_
+
+there's got to be a sweet spot somewhere in the middle, and there are certainly other ways to reduce that frustration curve a little
+
+I'll be focusing on how the reviewer can minimise the frustration, but the author should play a role in this too!
+:::
+
+## Have you ever ...
+
+ <br></br>
+ `r emoji("woman_technologist")` &nbsp; submitted a pull request?
+ <br></br>
+ `r emoji("mag")` performed a code review?
+ <br></br>
+ `r emoji("thinking")` thought about how to do code review better?
+<br></br>
+<center>
+
+vote with `r emoji("thumbs up")` and `r emoji("thumbs down")` emojis
+
+</center>
+
+:::{.notes}
+
+paste these in chat, give everyone a minute
+
+submitted a pull request?
+
+performed a code review?
+
+thought about how to do code review better?
+
+:::
+
+## Literal code review
+
+ <br></br>
+ `r emoji("pencil")` write some comments
+ <br></br>
+ `r emoji("computer")` run the code
+ <br></br>
+ `r emoji("wrench")` make direct suggestions
+  <br></br>
+ `r emoji("eyes")` [let's review some code](LINK TO)
+
+:::{.notes}
+
+Make a comment on the code
+
+show how to make direct suggestion
+
+approve - this is fine
+comment - general feedback, idk, informal/prelim review
+request changes - something needs fixing, or refactor
+:::
+
+## Why review code?
+
+<br></br>
+ `r emoji("check")` quality & compliance
+<br></br>
+ `r emoji("bulb")` provide ideas for improving the code
+<br></br>
+ `r emoji("brain")` knowledge transfer
+<br></br>
+ `r emoji("bus")` increase your bus number!
+
+:::{.notes}
+
+QA/C We strive to provide high-quality outputs, and good code is the basis of this. We don't want buggy, insecure or _wrong_ code in main
+
+This gives us an opportunity to improve our code
+
+We also have an opportinity to:
+
+ * improve the coding practices of team members (junior _and_ senior)
+ * suggest new packages/approaches
+ * learn about different parts of our codebase
+ * don't want a small bus number - people leave, get sick, we need some redundancy
+
+:::
+## What is a reviewer looking for?
+
+<br></br>
+ `r emoji("bug")` potential bugs
+<br></br>
+ `r emoji("chart_with_upwards_trend")` quality of outputs
+<br></br>
+ `r emoji("numbers")` check the mathematics and statistics
+<br></br>
+ `r emoji("briefcase")` sensitive information!
+
+:::{.notes}
+
+as a reviewer, I look for quite a few things in the code, but here are the main things for those with some kind of analytical role
+
+bugs - is this code a bit flakey or difficult to maintain? Can I see this going wrong at some point down the line?
+
+outputs - are charts accessible? are modelling outputs reasonable? is there a sensible degree of rounding? has text been spell checked?
+
+maths and stats - have appropriate methods been used? are the modelling assumptions reasonable?
+
+sensitive info - has a password or secret accidentally been committed? have we accidentally pushed data to git?
+
+:::
+## How should a reviewer behave?
+
+<br></br>
+ `r emoji("heart")` be kind and **praise your team members**
+ <br></br>
+ `r emoji("coffee")` take a break if you're getting grumpy
+<br></br>
+ `r emoji("question")` ask open ended questions about the code
+<br></br>
+ `r emoji("robot")` automate the painful stuff: linters, stylers, CI/CD
+
+:::{.notes}
+
+really important to approach review with a kind, open minded perspective. We all want to deliver quality products and we're all working really hard to do that
+
+reviewing long or highly techincal pull requests can be a difficult experience which leads to the reviewing being blunt or grumpy. This is natural human behaviour, but this is something we should aim to counteract. Take a break if you're reviewing for more than say, an hour. Take your own patient into account. Before you submit the review, it can be worth leaving it and re-reading all your comments/suggestions
+
+asking open ended questions about the code, rather than making opinionated statements is really helpful. For example "can you explain why you've taken this approach?" is a much nicer line of questioning than "this is bad, change to X". It's a good idea to adopt an unassuming tone
+
+we can avoid a lot of grumpyness by automating the tedious parts code review. Use a style guide and stick to it (rapid response is a reasonable reason not to be overly critical). Use linters and stylers to help team members conform to a style guide. CI/Cd tools and precommit hooks can prevent the reviewer with getting lumped with code that doensn't work or fails to meet stylistic requirements
+
+:::
+
+## Code is never perfect
+
+<br></br>
+ `r emoji("stethoscope")` accept PRs when overall health is improved
+<br></br>
+ `r emoji("telephone")` have a natter about the code
+<br></br>
+ `r emoji("hammer_and_wrench")` favour maintainable and readable code
+<br></br>
+ `r emoji("family")` broaden the discussion
+
+:::{.notes}
+
+sometimes a reviewer and author can get into a really long game of github ping pong and can't settle on what the "right" code solution to a problem is.
+
+I remember when I was in the first year of my PhD, a lecturer in my department said to me "a thesis is never finished, only submitted" - software projects are like this too. There's always _more_ that can be done.
+
+so how can we ensure we're getting code moving, rather than an infinite game of github ping pong?
+
+we should aim to accept PRs when the overall health of code and analytical outputs is improved. If it's not quite perfect. A good way to keep code moving is keep the scope of tickets/PRs narrow and make sure you've written up issues to resolve in the future. For example, ticket 1 might be to write the infrastructure for a modelling pipeline, ticket 2 might be to improve the model in that pipeline. Doing both in one step is going to be challenging.
+
+
+when we're working asyncronously, a lot can get missed in written communication. For complex PRs/code, having a converstation about the code can be really useful
+
+when I'm in a review stalemate, I tend to favour code which is maintainable and readable over performant or clever. I recently read something to the effect of "debugging is twice as hard as writing" so if the code is at our intellectual limit, you're going to have no fun debugging. We're probably going to spend longer maintaining our code than running.
+
+
+it can also be a good idea to just ask others in your team when you're stuck. An additional opinion can break a stalemate and provide additional experience
+:::
+
+## Triage your suggestions
+
+<br></br>
+ `r emoji("spider")` Nit: this is minor; I am being pedantic
+<br></br>
+  `r emoji("thinking")` Consider: I'm not too bothered, would be nice
+<br></br>
+ `r emoji("shrug")` FYI: out of scope, I think you'd like this approach
+<br></br>
+ `r emoji("warning")` Should: an essential fix!
+
+:::{.notes}
+
+I find for really long reviews, if can be overwhelming for the reviewing if you've left a lot of comments - completely understandable. Using the given scheme can reduce the stress a little
+
+a good tactic here is to let the author know how important everything is. Nit picks aren't a hill to die on, and automating aspects of code review with e.g. linters is going to reduce them massively
+
+i also find that sometimes people dont want to make changes because they think it's going to take a long time to resolve the problem. There's a few considerations here
+
+ * decide how important the fix is
+ * ask them to try anyway, if it takes too long (say, more than 20 mins), consider spinning up a ticket to resolve the issue
+ * PRs don't have to merge into main, so you can always have someone else work on the fix and merge the branches together before pushing to main
+
+:::
+
+## Every team is unique
+
+ <br></br>
+ `r emoji("paper")` come up with your own team code review style
+ <br></br>
+ `r emoji("megaphone")` agree on the style as a team activity
+ <br></br>
+ `r emoji("recycle")` trial it, review it, adapt it
+ <br></br>
+ `r emoji("pen")` document your process (use a [wiki](https://github.com/UKHSA-Internal/idm-pancasts/wiki/Code-review-for-Pancasters)!)
+
+:::{.notes}
+
+In our team, we have an internal "style guide"/"rule set" for code review. I did the initial draft and the research, but it was agreed on by the whole team. It's really important that when you're impleementing a set of "rules", that everyone gets a say.
+
+The view we take on our "rules" are that they are by us, and for us. If we don't like the rules, we talk about them and maybe change them.
+
+I'm not going to say that every piece of advice I've given here _should_ be adopted by your team, apart from maybe this slide here. If you want your team to adopt a culture/way of working change, you need to give all team members a say in that change, make it well documented and never set these things in stone
+
+:::
+
+## In review
+
+<br></br>
+ `r emoji("key")` code review is key to quality outputs
+<br></br>
+ `r emoji("family")` we all need to be reviewing code
+<br></br>
+ `r emoji("praise")` be kind, supportive and encouraging
+<br></br>
+ `r emoji("fast_forward")` keep code moving forward
+
+
+## Further resources
+
+* [Blog version](https://jcken95.github.io/projects/code_review.html)
+
+* [Google's engineering practices](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
+
+* [GitLab blog: What is a code review?](https://about.gitlab.com/topics/version-control/what-is-code-review/)
+
+* [Stack Overflow blog: How to Make Good Code Review Better](https://stackoverflow.blog/2019/09/30/how-to-make-good-code-reviews-better/)
+
+* [Tidyteam code review principles](https://code-review.tidyverse.org/)
+
+* [GitHub as a team sport](https://the-strategy-unit.github.io/data_science/presentations/2024-05-23_github-team-sport/#/title-slide)
