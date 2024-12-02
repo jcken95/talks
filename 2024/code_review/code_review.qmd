@@ -429,3 +429,24 @@ I think though that "best" practices is kind of a misnomer, "standard" might be 
 ## Questions, comments, thoughts?
 
 ![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTl4eW83OW00YTA2bWgwNjJib2d1d3JienVsamx3cnJ3bWRqejFtaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2XflxzGoMXkpe9bvyk8/giphy.webp)
+
+# Bonus content
+
+well done for getting this far ...
+
+##
+<center>
+![](img/one_does_not.png){width=80%}
+
+##
+
+<center>
+![](img/second_breakfast.png){width=80%}
+
+##
+<center>
+![](img/you_shall_not.png){width=80%}
+
+##
+<center>
+![](img/secrets.png){width=80%}
