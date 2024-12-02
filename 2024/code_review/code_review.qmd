@@ -27,7 +27,7 @@ if (!icons::icon_installed(icons::health_icons)) {
 }
 ```
 
-## Nice to meet you `r emoji("wave")`
+## I'm Jack, it's nice to meet you `r emoji("wave")`
 
  <br></br>
  `r fontawesome("address-card")` &nbsp; statistics PhD, education, & consultancy
@@ -152,9 +152,9 @@ I'll be focusing on how the reviewer can minimise the frustration, but the autho
  <br></br>
  `r emoji("woman_technologist")` &nbsp; submitted a pull request?
  <br></br>
- `r emoji("mag")` performed a code review?
+ `r emoji("mag")` &nbsp; performed a code review?
  <br></br>
- `r emoji("thinking")` thought about how to do code review better?
+ `r emoji("thinking")` &nbsp; thought about how to do code review better?
 <br></br>
 <center>
 
@@ -413,3 +413,15 @@ I think though that "best" practices is kind of a misnomer, "standard" might be 
 * [Tidyteam code review principles](https://code-review.tidyverse.org/)
 
 * [GitHub as a team sport](https://the-strategy-unit.github.io/data_science/presentations/2024-05-23_github-team-sport/#/title-slide)
+
+## Keep in touch `r emoji("pen")` 
+
+
+ <br></br>
+ `r fontawesome("mastodon")` [@_jcken@fossoton.org](https://fosstodon.org/@_jcken)
+ <br></br>
+ `r fontawesome("linkedin")` [Connect](https://www.linkedin.com/in/jcken95/) with me!
+ <br></br>
+ `r fontawesome("slack")` Chat on [Gov DS](https://govdatascience.slack.com)
+ <br></br>
+ `r fontawesome("meetup")` Maybe see you at a north-east tech [meetup](https://www.meetup.com/find/?keywords=data&source=EVENTS&location=gb--41--Newcastle%20Upon%20Tyne&distance=tenMiles)?
