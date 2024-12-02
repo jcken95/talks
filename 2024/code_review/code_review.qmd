@@ -425,3 +425,7 @@ I think though that "best" practices is kind of a misnomer, "standard" might be 
  `r fontawesome("slack")` Chat on [Gov DS](https://govdatascience.slack.com)
  <br></br>
  `r fontawesome("meetup")` Maybe see you at a north-east tech [meetup](https://www.meetup.com/find/?keywords=data&source=EVENTS&location=gb--41--Newcastle%20Upon%20Tyne&distance=tenMiles)?
+ 
+## Questions, comments, thoughts?
+
+![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTl4eW83OW00YTA2bWgwNjJib2d1d3JienVsamx3cnJ3bWRqejFtaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2XflxzGoMXkpe9bvyk8/giphy.webp)
