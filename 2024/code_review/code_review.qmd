@@ -332,7 +332,7 @@ i also find that sometimes people don't want to make changes because they think 
  <br></br>
  `r emoji("recycle")` trial it, review it, adapt it
  <br></br>
- `r emoji("pen")` document your process (use a [wiki](https://github.com/UKHSA-Internal/idm-pancasts/wiki/Code-review-for-Pancasters)!)
+ `r emoji("pen")` document your process (use a [wiki](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis)!)
 
 :::{.notes}
 
