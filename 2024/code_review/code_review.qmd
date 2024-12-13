@@ -418,7 +418,7 @@ I think though that "best" practices is kind of a misnomer, "standard" might be 
 
 
  <br></br>
- `r fontawesome("mastodon")` [@_jcken@fossoton.org](https://fosstodon.org/@_jcken)
+ `r fontawesome("mastodon")` [@_jcken@fosstodon.org](https://fosstodon.org/@_jcken)
  <br></br>
  `r fontawesome("linkedin")` [Connect](https://www.linkedin.com/in/jcken95/) with me!
  <br></br>
