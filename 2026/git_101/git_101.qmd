@@ -24,9 +24,9 @@ embed-resources: true
 ## What is Git??
 
  * Git is software which tracks changes in code
- * Create checkpoints known as "commits"
- * Create "branches" for safe experimentation
- * "merge" changes into your main branch
+ * Create checkpoints known as **commits**
+ * Create **branches** for safe experimentation
+ * **Merge** changes into your main branch
 
  
  ![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmIxNDl1dHVqang3dnVjZ3VpbmcydTFrbDB3cmNtZG93dzQ3bWVwMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JQRbV7nkeSHmUltCWK/giphy.gif){fig-align="center"}
