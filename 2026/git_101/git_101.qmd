@@ -6,23 +6,10 @@ institute: Infectious disease modelling team, UKHSA | Royal Statistical Society 
 embed-resources: true
 ---
 
-```{r}
-#| label: setup
-
-# library(icons)
-# library(showtext)
-# library(elementalist) #' pak::pak("teunbrand/elementalist")
-# library(PrettyCols)
-# library(emoji)
-# library(dplyr)
-# library(ggplot2)
-
-
-```
 
 ## 
 
-![](img/git.png)
+![](img/git.png){fig-align="center"}
 
 
 ## What you gonna Git out of this??
