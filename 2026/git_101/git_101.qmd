@@ -1,5 +1,5 @@
 ---
-title: "A 101 on Git"
+title: "A rapid 101 on Git"
 format: revealjs
 author: Dr Jack Kennedy (he/him)
 institute: Infectious disease modelling team, UKHSA | Royal Statistical Society 2026
