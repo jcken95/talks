@@ -1,0 +1,74 @@
+---
+title: "A 101 on Git"
+format: revealjs
+author: Dr Jack Kennedy (he/him)
+institute: Infectious disease modelling team, UKHSA | Royal Statistical Society 2026
+embed-resources: true
+---
+
+```{r}
+#| label: setup
+
+# library(icons)
+# library(showtext)
+# library(elementalist) #' pak::pak("teunbrand/elementalist")
+# library(PrettyCols)
+# library(emoji)
+# library(dplyr)
+# library(ggplot2)
+
+
+```
+
+## 
+
+![](img/git.png)
+
+
+## What you gonna Git out of this??
+
+ * In about 5 minutes I will try explain:
+ * What Git and GitHub are
+ * Why it might be more than just storing code
+ * I am going to try keep this very low-tech
+ 
+![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3Y0aGxjd2Vuc3hueThkYTQyanpmZDA0d212ZmUxam03aTd6b2FwMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kH6CqYiquZawmU1HI6/giphy.gif){fig-align="center"}
+ 
+## What is Git??
+
+ * Git is software which tracks changes in code
+ * Create checkpoints known as "commits"
+ * Create "branches" for safe experimentation
+ * "merge" changes into your main branch
+
+ 
+ ![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmIxNDl1dHVqang3dnVjZ3VpbmcydTFrbDB3cmNtZG93dzQ3bWVwMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JQRbV7nkeSHmUltCWK/giphy.gif){fig-align="center"}
+
+## GitHub?? GitLab?? GitLost??
+ 
+ * GitHub, GitLab, BitBucket are all flavours of the same thing
+ * Host your code online for storage and sharing
+ * Free, student, premium and enterprise versions
+ * Offer project management and code quality tooling
+ 
+  ![](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbm80amsydXUxaWVjdmF0N2NhMDM0dDJwcm03amZpNW8yOHd2bWRzMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wbp3YSoF7FhT3XyjeE/giphy.gif){fig-align="center"}
+  
+  
+## What can I Git out of GitHub??
+
+ * Collaboration: code review, open source, licensing
+ * Project management: issues, boards, discussions
+ * CI/CD: run automated checks on your code
+ * Wikis: documentation, SOPs, FAQs, ...
+ 
+
+ ![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3NleWd0eHBtbnhvb2N1cWl4eDE0dWE5N3Z3eXFxc3p1OGlqZmU0aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d6xAHHirkPBTJlaGE5/giphy.gif){fig-align="center"}
+
+## What is this Git trying to get across??
+
+ * Git is version control software
+ * GitHub is an online platform for managing code projects
+ * You can use CLI and GUIs for Git
+ * Start off small, the fancy stuff can come later
+ 
+![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExazQ0NGcydDlkaDkzcDEzdDhhdmp5ZmluOHBidjIwYzdhem41bXBuMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dsKnRuALlWsZG/giphy.gif){fig-align="center"}
